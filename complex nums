@@ -1,0 +1,132 @@
+#include <iostream>
+#include "complex.h"
+
+using namespace std;
+
+int main()
+{
+
+    complex a;
+    complex b;
+    char operation ;
+    cin >> a;
+    cout << "enter operation ->  ";
+    cin >> operation ;
+    cin >> b ;
+    complex c;
+    if ( operation == '-'  ){
+        c = a - b;
+    }
+    else if ( operation == '+'  ){
+        c = a + b;
+    }
+    else if ( operation == '*'  ){
+        c = a * b;
+    }
+
+    cout << c ;
+
+
+
+
+}
+
+***************************************************
+#ifndef COMPLEX_H
+#define COMPLEX_H
+#include <iostream>
+
+using namespace std ;
+
+class complex
+{
+    public:
+        complex();
+        complex(double a , double b);
+        complex(double a);
+        complex operator+ (complex c);
+        complex operator- (complex c);
+        complex operator* (complex c);
+        friend istream& operator>> (istream& in , complex& c );
+        friend ostream& operator<< (ostream& out , complex c );
+
+    protected:
+      //  double real, imaginary ;
+
+
+    private:
+        double real , imaginary ;
+        //char oper ;
+
+};
+
+#endif // COMPLEX_H
+*****************************************************
+#include "complex.h"
+#include <iostream>
+
+using namespace std ;
+
+
+complex:: complex ()
+{
+    real = 0;
+    imaginary = 0;
+}
+
+complex:: complex ( double a, double b )
+{
+    real = a;
+    imaginary = b;
+}
+
+complex::complex ( double a  )
+{
+    real = a;
+    imaginary = 0;
+}
+
+istream& operator>> (istream& in, complex& c )
+{
+    // double x , y;
+    cout << "enter REAL = ";
+    in >> c.real ;
+    cout << "enter IMAGINARY = ";
+    in >> c.imaginary ;
+    return in ;
+}
+
+ostream&  operator<< (ostream& out, complex c )
+{
+    out << c.real << " + "  << "(" << c.imaginary << ")" <<" * i " ;
+    return out ;
+}
+
+complex  complex :: operator- (complex c){
+    complex res( real , imaginary )  ;
+    res.real = this -> real - c.real ;
+    res.imaginary = this -> imaginary - c.imaginary ;
+    cout << "the Result = ";
+    return (res);
+}
+
+complex  complex :: operator+ (complex c){
+    complex res( real , imaginary )  ;
+    res.real = this -> real + c.real ;
+    res.imaginary = this -> imaginary + c.imaginary ;
+    cout << "the Result = ";
+    return (res);
+
+}
+
+//(a + b*i) * (c + d*i) == (a*c – b*d) + (a*d + b*c)*i
+
+complex complex :: operator* (complex c){
+    complex res ;
+    res.real = ( this-> real * c.real) - (this->imaginary * c.imaginary );
+    res.imaginary = (this->real * c.imaginary) + (this->imaginary*c.real );
+    cout << "the Result = ";
+    return (res);
+}
+
+
