@@ -1,6 +1,6 @@
 // Program: Assignment 1 - Problem 0
 // Purpose: Operator overloading for matrices
-// Author:  Suhail Hany - Seif Alaa - Shahesta Alkady
+// Author:  Suhail Hany -Abdelrahman Morsy  - Shahesta Alkady
 // Date:    8 October 2018
 // Version: 1.0
 
